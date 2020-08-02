@@ -6,7 +6,6 @@ class Sheep :
 public:
     Sheep() = default;
     Sheep(int* map, int _size);
-    ~Sheep() { std::cout << "Bay sheep\n"; }
     int move(int* map);
     unsigned int getPosition();
 

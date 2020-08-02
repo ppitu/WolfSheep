@@ -48,6 +48,7 @@ void AnimalManager::play()
 
 		if (tmp != -1)
 		{
+			std::cout << "Bye sheep\n";
 			lsheep.pop_front();
 		}
 

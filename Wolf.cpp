@@ -1,10 +1,8 @@
 #include "Wolf.h"
 
-Wolf::Wolf(int *map, int _size) : Animal(_size)
+Wolf::Wolf(int *map, int _size)
 {
 	int tmprandom =	drawUInt(0, _size);
-
-	Animal::uposition = tmprandom;
 
 	*(map + tmprandom) = 1;
 

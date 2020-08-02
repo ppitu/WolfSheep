@@ -2,7 +2,7 @@
 
 Sheep::Sheep(int* map, int _size)
 {
-	int tmprandom = drawUInt(0, _size);
+	int tmprandom = drawUInt(0, (_size - 1));
 
 	*(map + tmprandom) = 2;
 

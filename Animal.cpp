@@ -1,8 +1,5 @@
 #include "Animal.h"
 
-Animal::Animal(unsigned int _size) : usize(_size)
-{
-}
 
 int Animal::move(int* map)
 {
@@ -20,5 +17,5 @@ unsigned int Animal::drawUInt(int first, int last)
 
 int unsigned Animal::getPosition()
 {
-	return uposition;
+	return 0;
 }
