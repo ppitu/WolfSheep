@@ -2,15 +2,15 @@
 
 AnimalManager::AnimalManager()
 {
-	int n;
-
 	std::cout << "Map size: ";
-	std::cin >> n;
+	std::cin >> size;
 
-	map = new int[n];
-	size = n;
+	std::cout << "How many turns?\n";
+	std::cin >> turn;
 
-	for (unsigned int i = 0; i < n; i++)
+	map = new int[size];
+
+	for (unsigned int i = 0; i < size; i++)
 	{
 		map[i] = 0;
 	}
@@ -18,7 +18,7 @@ AnimalManager::AnimalManager()
 
 AnimalManager::~AnimalManager()
 {
-	delete [] map;
+	delete[] map;
 }
 
 void AnimalManager::print()
@@ -33,26 +33,58 @@ void AnimalManager::print()
 
 void AnimalManager::play()
 {
-	lsheep.push_front(Sheep(map, size));
+	lsheep.push_front(Animal(map, size));
 	wolf.push_back(Wolf(map, size));
 
 	print();
 
-	lsheep.front().move(map);
+	if (lsheep.front().move(map, size) == 1)
+	{
+		std::cout << "Bye sheep\n";
+		lsheep.pop_front();
+	}
 
 	int tmp;
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < turn; i++)
 	{
-		tmp = wolf[0].move(map);
+		tmp = wolf[0].move(map, size);
 
 		if (tmp != -1)
 		{
 			std::cout << "Bye sheep\n";
-			lsheep.pop_front();
+			for (auto it = lsheep.begin(); it != lsheep.end(); )
+			{
+				if (it->checkIfEaten(map))
+				{
+					it = lsheep.erase(it);
+				}
+				else
+				{
+					++it;
+				}
+			}
 		}
 
+		int choose;
+		std::cout << "Add new Animal?\n[1] Yes\n[2] No\n";
+		std::cin >> choose;
+
+		if (choose == 1)
+		{
+			lsheep.push_front(Animal(map, size));
+
+			if (lsheep.front().move(map, size) == 1)
+			{
+				std::cout << "Bye sheep\n";
+				lsheep.pop_front();
+			}
+
+		}
+
+		system("cls");
 		print();
 	}
 
+	
 }

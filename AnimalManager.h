@@ -1,7 +1,6 @@
 #pragma once
 #include "Animal.h"
 #include "Wolf.h"
-#include "Sheep.h"
 
 #include <iostream>
 #include <list>
@@ -19,8 +18,9 @@ public:
 private:
 	int* map;
 	int size;
+	int turn;
 
-	std::list<Sheep> lsheep;
+	std::list<Animal> lsheep;
 	std::vector<Wolf> wolf;
 };
 

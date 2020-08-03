@@ -7,10 +7,9 @@ Wolf::Wolf(int *map, int _size)
 	*(map + tmprandom) = 1;
 
 	uposition = tmprandom;
-	usize = _size;
 }
 
-int Wolf::move(int *map)
+int Wolf::move(int *map, int _size)
 {
 	unsigned int tmp = -1;
 

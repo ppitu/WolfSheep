@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <iterator>
 
 
 class Animal
@@ -10,8 +11,13 @@ class Animal
 public:
 
 	Animal() = default;
-	virtual int move(int *map);
+	Animal(int* map, int _size);
+	virtual int move(int *map, int _size);
 	unsigned int drawUInt(int first, int last);
-	virtual unsigned int getPosition();
+	unsigned int getPosition();
+	bool checkIfEaten(int* map);
+
+protected:
+	unsigned int uposition;
 
 };
