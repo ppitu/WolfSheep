@@ -1,6 +1,6 @@
 #include "Animal.h"
 
-Animal::Animal(int* map, int _size)
+Animal::Animal(int* map, int _size, std::string _name) : name(_name)
 {
 	int tmprandom = drawUInt(0, (_size - 1));
 
@@ -42,7 +42,7 @@ int Animal::move(int *map, int _size)
 
 	if (*(map + uposition) == 1)
 	{
-		var = 1;
+		var = -1;
 	}
 	else
 	{
@@ -76,4 +76,9 @@ bool Animal::checkIfEaten(int* map)
 	}
 
 	return false;
+}
+
+std::string Animal::getName()
+{
+	return name;
 }

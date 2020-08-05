@@ -1,6 +1,6 @@
 #pragma once
 #include "Animal.h"
-#include "Wolf.h"
+#include "Predator.h"
 
 #include <iostream>
 #include <list>
@@ -20,7 +20,7 @@ private:
 	int size;
 	int turn;
 
-	std::list<Animal> lsheep;
-	std::vector<Wolf> wolf;
+	std::vector<Animal> vanimal;
+	std::vector<Predator> vpredator;
 };
 

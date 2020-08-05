@@ -33,31 +33,26 @@ void AnimalManager::print()
 
 void AnimalManager::play()
 {
-	lsheep.push_front(Animal(map, size));
-	wolf.push_back(Wolf(map, size));
+	vanimal.push_back(Animal(map, size, "Sheep"));
+	vpredator.push_back(Predator(map, size, "Wolf"));
 
 	print();
-
-	if (lsheep.front().move(map, size) == 1)
-	{
-		std::cout << "Bye sheep\n";
-		lsheep.pop_front();
-	}
 
 	int tmp;
 
 	for (size_t i = 0; i < turn; i++)
 	{
-		tmp = wolf[0].move(map, size);
+		//system("cls");
+		tmp = vpredator[0].move(map, size);
 
 		if (tmp != -1)
 		{
-			std::cout << "Bye sheep\n";
-			for (auto it = lsheep.begin(); it != lsheep.end(); )
+			for (auto it = vanimal.begin(); it != vanimal.end(); )
 			{
 				if (it->checkIfEaten(map))
 				{
-					it = lsheep.erase(it);
+					std::cout << "Bye " << it->getName() << "\n";
+					it = vanimal.erase(it);
 				}
 				else
 				{
@@ -67,22 +62,27 @@ void AnimalManager::play()
 		}
 
 		int choose;
+		print();
 		std::cout << "Add new Animal?\n[1] Yes\n[2] No\n";
 		std::cin >> choose;
 
 		if (choose == 1)
 		{
-			lsheep.push_front(Animal(map, size));
-
-			if (lsheep.front().move(map, size) == 1)
-			{
-				std::cout << "Bye sheep\n";
-				lsheep.pop_front();
-			}
-
+			vanimal.push_back(Animal(map, size, "Sheep"));
 		}
 
-		system("cls");
+		for (auto it = vanimal.begin(); it != vanimal.end(); )
+		{
+			if (it->move(map, size) == -1)
+			{
+				std::cout << "Bye " << it->getName() << "\n";
+				it = vanimal.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 		print();
 	}
 
